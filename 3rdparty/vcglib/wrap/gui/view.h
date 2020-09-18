@@ -112,7 +112,7 @@ class View
 {
   public:
     void GetView();
-    void SetView(const float *_proj, const float *_modelview, const int *_viewport);
+    void SetView(const float *_proj = NULL, const float *_modelview = NULL, const int *_viewport = NULL);
     Point3<T> Project(const Point3<T> &p) const;
     Point3<T> UnProject(const Point3<T> &p) const;
     Point3<T> ViewPoint() const;
@@ -152,7 +152,7 @@ void View<T>::GetView()
 }
 
 template <class T>
-void View<T>::SetView(const float *_proj = NULL, const float *_modelview = NULL, const int *_viewport = NULL)
+inline void View<T>::SetView(const float *_proj, const float *_modelview, const int *_viewport)
 {
     for (int i = 0; i < 4; i++)
     {
@@ -169,7 +169,7 @@ void View<T>::SetView(const float *_proj = NULL, const float *_modelview = NULL,
 }
 
 template <class T>
-Point3<T> View<T>::ViewPoint() const
+inline Point3<T> View<T>::ViewPoint() const
 {
     Matrix44<T> mi = model;
     Invert(mi);
@@ -177,7 +177,7 @@ Point3<T> View<T>::ViewPoint() const
 }
 // Note that p it is assumed to be in model coordinate.
 template <class T>
-Plane3<T> View<T>::ViewPlaneFromModel(const Point3<T> &p)
+inline Plane3<T> View<T>::ViewPlaneFromModel(const Point3<T> &p)
 {
     // compute normal, pointing away from view.
     Matrix44<T> imodel = model;
@@ -192,7 +192,7 @@ Plane3<T> View<T>::ViewPlaneFromModel(const Point3<T> &p)
 
 // Note that p it is assumed to be in model coordinate.
 template <class T>
-Line3<T> View<T>::ViewLineFromModel(const Point3<T> &p)
+inline Line3<T> View<T>::ViewLineFromModel(const Point3<T> &p)
 {
     Point3<T> vp = ViewPoint();
     Line3<T> line;
@@ -203,7 +203,7 @@ Line3<T> View<T>::ViewLineFromModel(const Point3<T> &p)
 
 // Note that p it is assumed to be in window coordinate.
 template <class T>
-Line3<T> View<T>::ViewLineFromWindow(const Point3<T> &p)
+inline Line3<T> View<T>::ViewLineFromWindow(const Point3<T> &p)
 {
     Line3<T> ln;  // plane perpedicular to view direction and passing through manip center
     Point3<T> vp = ViewPoint();
@@ -214,7 +214,7 @@ Line3<T> View<T>::ViewLineFromWindow(const Point3<T> &p)
 }
 
 template <class T>
-Point3<T> View<T>::Project(const Point3<T> &p) const
+inline Point3<T> View<T>::Project(const Point3<T> &p) const
 {
     Point3<T> r;
     r = matrix * p;
@@ -222,7 +222,7 @@ Point3<T> View<T>::Project(const Point3<T> &p) const
 }
 
 template <class T>
-Point3<T> View<T>::UnProject(const Point3<T> &p) const
+inline Point3<T> View<T>::UnProject(const Point3<T> &p) const
 {
     Point3<T> s = WindowCoordToNormDevCoord(p);
     s = inverse * s;
@@ -235,7 +235,7 @@ Point3<T> View<T>::UnProject(const Point3<T> &p) const
 // Le coordinate di viewport stanno tra -1 e 1
 
 template <class T>
-Point3<T> View<T>::NormDevCoordToWindowCoord(const Point3<T> &p) const
+inline Point3<T> View<T>::NormDevCoordToWindowCoord(const Point3<T> &p) const
 {
     Point3<T> a;
     a[0] = (p[0] + 1) * (viewport[2] / (T)2.0) + viewport[0];
@@ -246,7 +246,7 @@ Point3<T> View<T>::NormDevCoordToWindowCoord(const Point3<T> &p) const
 }
 
 template <class T>
-Point3<T> View<T>::WindowCoordToNormDevCoord(const Point3<T> &p) const
+inline Point3<T> View<T>::WindowCoordToNormDevCoord(const Point3<T> &p) const
 {
     Point3<T> a;
     a[0] = (p[0] - viewport[0]) / (viewport[2] / (T)2.0) - 1;
