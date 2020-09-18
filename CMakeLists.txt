@@ -1,14 +1,11 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.10)
 
 project(PointCloud)
 
-FIND_PACKAGE(Qt4 REQUIRED)
-find_package( Qt4 REQUIRED )
+find_package(Qt5 COMPONENTS Widgets Gui REQUIRED)
 
 set(QT_USE_QTOPENGL TRUE)
 
-include( ${QT_USE_FILE} )
-add_definitions( ${QT_DEFINITIONS} )
 
 find_package(OpenGL)
 find_package(GLUT)
@@ -22,9 +19,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 include_directories( ./3rdparty/vcglib )
 
-QT4_ADD_RESOURCES (RES_SRC  mainwindow.qrc )
+QT5_ADD_RESOURCES (RES_SRC  mainwindow.qrc )
 
-QT4_WRAP_UI ( UI_SRC
+QT5_WRAP_UI ( UI_SRC
     mainwindow.ui
     UI/normal_para.ui
     UI/para_skeletonization.ui
@@ -65,7 +62,8 @@ add_executable(${PROJECT_NAME} ${APP_SRC} ${RES_SRC} ${UI_SRC})
 
 
 target_link_libraries(${PROJECT_NAME}
-    ${QT_LIBRARIES}
+    Qt5::Widgets
+    Qt5::Gui
     ${OPENGL_gl_LIBRARY}
     ${GLUT_LIBRARIES}
     glut GL GLU ann
