@@ -53,7 +53,7 @@ Revision 1.18  2007/02/26 01:30:02  cignoni
 Added reflection Name
 
 Revision 1.17  2007/01/15 15:04:15  tarini
-added "ToAscii" and "SetFromAscii" methods to load/store current trackball status from/to ascii strings
+added "toLatin1" and "SetFromAscii" methods to load/store current trackball status from/to ascii strings
 (intended uses: clipboard operations and comments inside png snapshots!)
 
 Revision 1.16  2006/07/26 13:54:45  cignoni
@@ -300,7 +300,7 @@ void Trackball::DrawPlane() {
 }
 */
 
-void Trackball::ToAscii(char *result)
+void Trackball::toLatin1(char *result)
 {
     float *f = (float *)&track;
     sprintf(result, "trackball(%f,%f,%f,%f,%f,%f,%f,%f)", f[0], f[1], f[2], f[3], f[4], f[5], f[6], f[7]);

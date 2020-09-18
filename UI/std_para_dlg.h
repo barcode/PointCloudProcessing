@@ -1,10 +1,10 @@
 #pragma once
 
 #include <QDialog>
-#include <QtGui/QDockWidget>
-#include <QtGui/QFrame>
-#include <QtGui/QGridLayout>
-#include <QtGui/QWidget>
+#include <QDockWidget>
+#include <QFrame>
+#include <QGridLayout>
+#include <QWidget>
 #include <QtGui>
 #include <iostream>
 

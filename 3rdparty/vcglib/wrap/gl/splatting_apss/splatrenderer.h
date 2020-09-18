@@ -161,7 +161,7 @@ QString SplatRenderer<MeshType>::loadSource(const QString& func, const QString& 
     QFile f(":/SplatRenderer/shaders/" + filename);
     if (!f.open(QFile::ReadOnly))
     {
-        std::cerr << "failed to load shader file " << filename.toAscii().data() << "\n";
+        std::cerr << "failed to load shader file " << filename.toLatin1().data() << "\n";
         return res;
     }
     else
@@ -206,8 +206,8 @@ void SplatRenderer<MeshType>::configureShaders()
     {
         QString vsrc = shading + defines + mShaderSrcs[k * 2 + 0];
         QString fsrc = shading + defines + mShaderSrcs[k * 2 + 1];
-        mShaders[k].SetSources(mShaderSrcs[k * 2 + 0] != "" ? vsrc.toAscii().data() : 0,
-                               mShaderSrcs[k * 2 + 1] != "" ? fsrc.toAscii().data() : 0);
+        mShaders[k].SetSources(mShaderSrcs[k * 2 + 0] != "" ? vsrc.toLatin1().data() : 0,
+                               mShaderSrcs[k * 2 + 1] != "" ? fsrc.toLatin1().data() : 0);
         mShaders[k].prog.Link();
         if (mShaderSrcs[k * 2 + 0] != "")
         {

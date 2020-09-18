@@ -1,6 +1,8 @@
+#include <QFileDialog>
+
 #include "mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent, Qt::WFlags flags) : QMainWindow(parent, flags)
+MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags) : QMainWindow(parent, flags)
 {
     cout << "MainWindow constructed" << endl;
     ui.setupUi(this);

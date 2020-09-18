@@ -1,4 +1,5 @@
-#include <QtGui/QApplication>
+#include <QApplication>
+#include <QStyleFactory>
 //#include "Console.h"
 #include "mainwindow.h"
 

@@ -37,7 +37,7 @@ Revision 1.13  2007/02/26 01:30:02  cignoni
 Added reflection Name
 
 Revision 1.12  2007/01/15 15:04:15  tarini
-added "ToAscii" and "SetFromAscii" methods to load/store current trackball status from/to ascii strings
+added "toLatin1" and "SetFromAscii" methods to load/store current trackball status from/to ascii strings
 (intended uses: clipboard operations and comments inside png snapshots!)
 
 Revision 1.11  2006/08/23 15:40:57  marfr960
@@ -464,13 +464,13 @@ class Trackball : public Transform
       trackball status, or to embed used trackball into a comment inside a screenshot, etc.
       @param st The string where to export (must be allocated 256bytes should be enough).
     */
-    void ToAscii(char *st);
+    void toLatin1(char *st);
     /*!
       @brief Loads current status from an ascii stings
 
       Loads current status from an ascii stings. This is useful for example to implement cut-and-paste operations of
       trackball status, or to embed used trackball into a comment inside a screenshot, etc.
-      @param st The string where to read from (must be allocated). Use ToAscii() method to set it.
+      @param st The string where to read from (must be allocated). Use toLatin1() method to set it.
       @return True iff the trackball was successfully recovered.
     */
     bool SetFromAscii(const char *st);

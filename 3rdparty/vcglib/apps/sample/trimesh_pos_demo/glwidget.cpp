@@ -82,7 +82,7 @@ QSize GLWidget::sizeHint() const
 
 void GLWidget::LoadTriMesh(QString &namefile)
 {
-    vcg::tri::io::ImporterPLY<MyStraightMesh>::Open(mesh, namefile.toAscii());
+    vcg::tri::io::ImporterPLY<MyStraightMesh>::Open(mesh, namefile.toLatin1());
     vcg::tri::UpdateBounding<MyStraightMesh>::Box(mesh);
     vcg::tri::UpdateNormals<MyStraightMesh>::PerFace(mesh);
     vcg::tri::UpdateNormals<MyStraightMesh>::PerVertex(mesh);

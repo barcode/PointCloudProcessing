@@ -45,7 +45,7 @@ void GLArea::open()
 
 void GLArea::init(QString file, float ballsize = 1.2)
 {
-    int err = tri::io::Importer<CMesh>::Open(mesh, file.toAscii().data());
+    int err = tri::io::Importer<CMesh>::Open(mesh, file.toLatin1().data());
     if (err)
         return;
     mesh.face.clear();

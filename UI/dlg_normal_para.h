@@ -1,7 +1,7 @@
 #pragma once
 
-#include <QtGui/QFrame>
-#include <QtGui/QWidget>
+#include <QFrame>
+#include <QWidget>
 #include <QtGui>
 #include <iostream>
 

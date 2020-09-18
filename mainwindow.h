@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QtGui/QMainWindow>
+#include <QMainWindow>
 #include "Algorithm/normal_extrapolation.h"
 #include "GLArea.h"
 #include "ParameterMgr.h"
@@ -10,13 +10,12 @@
 #include "calculationthread.h"
 #include "ui_mainwindow.h"
 
-// MainWindow类主要用来消息响应
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
   public:
-    MainWindow(QWidget *parent = 0, Qt::WFlags flags = 0);
+    MainWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
     ~MainWindow();
 
   private:

@@ -40,7 +40,7 @@ void DataMgr::loadPlyToOriginal(QString fileName)
 
     int mask = tri::io::Mask::IOM_VERTCOORD + tri::io::Mask::IOM_VERTNORMAL;
 
-    int err = tri::io::Importer<CMesh>::Open(original, curr_file_name.toAscii().data(), mask);
+    int err = tri::io::Importer<CMesh>::Open(original, curr_file_name.toLatin1().data(), mask);
     if (err)
     {
         cout << "Failed reading mesh: " << err << "\n";
@@ -69,7 +69,7 @@ void DataMgr::loadPlyToSample(QString fileName)
     mask += tri::io::Mask::IOM_VERTCOLOR;
     mask += tri::io::Mask::IOM_BITPOLYGONAL;
 
-    int err = tri::io::Importer<CMesh>::Open(samples, curr_file_name.toAscii().data(), mask);
+    int err = tri::io::Importer<CMesh>::Open(samples, curr_file_name.toLatin1().data(), mask);
     if (err)
     {
         cout << "Failed reading mesh: " << err << "\n";
@@ -124,7 +124,7 @@ void DataMgr::loadXYZN(QString fileName)
 
 void DataMgr::loadImage(QString fileName)
 {
-    // image = cv::imread(fileName.toAscii().data());
+    // image = cv::imread(fileName.toLatin1().data());
 
     ////cv::namedWindow("image", CV_WINDOW_AUTOSIZE);
     ////cv::imshow("image", image);
@@ -323,7 +323,7 @@ void DataMgr::savePly(QString fileName, CMesh& mesh)
     mask += tri::io::Mask::IOM_BITPOLYGONAL;
 
     if (fileName.endsWith("ply"))
-        tri::io::ExporterPLY<CMesh>::Save(mesh, fileName.toAscii().data(), mask, false);
+        tri::io::ExporterPLY<CMesh>::Save(mesh, fileName.toLatin1().data(), mask, false);
 }
 
 void DataMgr::normalizeROSA_Mesh(CMesh& mesh)

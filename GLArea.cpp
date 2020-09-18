@@ -802,7 +802,7 @@ void GLArea::pasteTile()
           QImage(tileBuffer.width() * ss.resolution, tileBuffer.height() * ss.resolution, tileBuffer.format());
 
     uchar *snapPtr =
-      snapBuffer.bits() + (tileBuffer.bytesPerLine() * tileCol) + ((totalCols * tileRow) * tileBuffer.numBytes());
+      snapBuffer.bits() + (tileBuffer.bytesPerLine() * tileCol) + ((totalCols * tileRow) * tileBuffer.byteCount());
     uchar *tilePtr = tileBuffer.bits();
 
     for (int y = 0; y < tileBuffer.height(); y++)
@@ -1095,7 +1095,7 @@ void GLArea::saveView(QString fileName)
     ofstream outfile(file.toStdString().c_str());
 
     char viewStr[100];
-    trackball.ToAscii(viewStr);
+    trackball.toLatin1(viewStr);
     cout << "saveView" << viewStr << endl;
     outfile << viewStr << endl;
 
@@ -1142,7 +1142,7 @@ void GLArea::saveView(QString fileName)
     outfile << global_paraMgr.wLop.getDouble("Repulsion Mu") << endl;
     outfile << global_paraMgr.wLop.getDouble("Repulsion Mu2") << endl;
 
-    trackball_light.ToAscii(viewStr);
+    trackball_light.toLatin1(viewStr);
     outfile << viewStr << endl;
 
     double init_radius = global_paraMgr.skeleton.getDouble("Initial Radius");
