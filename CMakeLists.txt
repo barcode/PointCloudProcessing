@@ -4,6 +4,26 @@ project(PointCloud)
 
 find_package(Qt5 COMPONENTS Widgets Gui REQUIRED)
 
+add_library(PointCloudToSkeleton
+    Algorithm/anistropicPCA_Normal.h
+    Algorithm/normal_extrapolation.h
+    Algorithm/NormalSmoother.cpp
+    Algorithm/NormalSmoother.h
+    Algorithm/PointCloudAlgorithm.h
+    Algorithm/Skeleton.cpp
+    Algorithm/Skeleton.h
+    Algorithm/Skeletonization.cpp
+    Algorithm/Skeletonization.h
+    Algorithm/Upsampler.cpp
+    Algorithm/Upsampler.h
+    Algorithm/WLOP.cpp
+    Algorithm/WLOP.h
+)
+target_link_libraries(PointCloudToSkeleton
+    Qt5::Widgets
+    Qt5::Gui
+    ann
+    )
 set(QT_USE_QTOPENGL TRUE)
 
 
@@ -51,11 +71,6 @@ SET( APP_SRC
     UI/dlg_wlop_para.cpp
     UI/std_para_dlg.cpp
 
-    Algorithm/NormalSmoother.cpp
-    Algorithm/Skeleton.cpp
-    Algorithm/Upsampler.cpp
-    Algorithm/Skeletonization.cpp
-    Algorithm/WLOP.cpp
     )
 
 add_executable(${PROJECT_NAME} ${APP_SRC} ${RES_SRC} ${UI_SRC})
