@@ -29,18 +29,8 @@
 //#include <map>
 #include <algorithm>
 #include <vector>
-#ifdef _WIN32
-#ifndef __MINGW32__
-#include <hash_map>
-#define STDEXT stdext
-#else
-#include <ext/hash_map>
-#define STDEXT __gnu_cxx
-#endif
-#else
-#include <ext/hash_map>
-#define STDEXT __gnu_cxx
-#endif
+
+#include <unordered_map>
 
 namespace vcg
 {
@@ -87,7 +77,7 @@ class SpatialHashTable : public BasicGrid<FLT>, public SpatialIndex<ObjType, FLT
     // the hash index directly the grid structure.
     // We use a MultiMap because we need to store many object (faces) inside each cell of the grid.
 
-    typedef typename STDEXT::hash_multimap<Point3i, ObjType *, HashFunctor> HashType;
+    typedef typename std::unordered_multimap<Point3i, ObjType *, HashFunctor> HashType;
     typedef typename HashType::iterator HashIterator;
     HashType hash_table;  // The real HASH TABLE **************************************
 

@@ -25,35 +25,8 @@
 #define VCG_MATH_UNIONSET_H
 
 // some stuff for portable hashes...
-#ifdef WIN32
-#ifndef __MINGW32__
-#include <hash_map>
-#include <hash_set>
-#define STDEXT stdext
-#else
-#include <ext/hash_map>
-#include <ext/hash_set>
-#define STDEXT __gnu_cxx
-#endif
-#else
-#include <ext/hash_map>
-#include <ext/hash_set>
-#define STDEXT __gnu_cxx
-// It's terrible but gnu's hash_map needs an instantiation of hash() for
-// every key type! So we cast the pointer to void*
-namespace __gnu_cxx
-{
-template <>
-class hash<void *> : private hash<unsigned long>
-{
-  public:
-    size_t operator()(const void *ptr) const
-    {
-        return hash<unsigned long>::operator()((unsigned long)ptr);
-    }
-};
-}
-#endif
+#include <unordered_map>
+#include <unordered_set>
 
 #include <assert.h>
 #include <vector>
@@ -97,13 +70,8 @@ class DisjointSet
         }
     };
 
-#ifdef _MSC_VER
-    STDEXT::hash_map<OBJECT_TYPE *, int> inserted_objects;
-    typedef typename STDEXT::hash_map<ObjectPointer, int>::iterator hIterator;
-#else
-    STDEXT::hash_map<OBJECT_TYPE *, int, SimpleObjHashFunc> inserted_objects;
-    typedef typename STDEXT::hash_map<ObjectPointer, int, SimpleObjHashFunc>::iterator hIterator;
-#endif
+    std::unordered_map<OBJECT_TYPE *, int, SimpleObjHashFunc> inserted_objects;
+    typedef typename std::unordered_map<ObjectPointer, int, SimpleObjHashFunc>::iterator hIterator;
 
     typedef std::pair<hIterator, bool> hInsertResult;
 

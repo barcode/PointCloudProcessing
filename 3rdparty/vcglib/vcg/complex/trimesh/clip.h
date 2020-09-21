@@ -33,18 +33,8 @@ $Log: not supported by cvs2svn $
 
 #include <vector>
 
-#ifdef _WIN32
-#ifndef __MINGW32__
-#include <hash_map>
-#define STDEXT stdext
-#else
-#include <ext/hash_map>
-#define STDEXT __gnu_cxx
-#endif
-#else
-#include <ext/hash_map>
-#define STDEXT __gnu_cxx
-#endif
+#include <unordered_map>
+
 namespace vcg
 {
 namespace tri
@@ -187,11 +177,11 @@ class TriMeshClipper
         }
     };
 
-    typedef STDEXT::hash_map<unsigned int, EdgeIntersections> UIntHMap;
+    typedef std::unordered_map<unsigned int, EdgeIntersections> UIntHMap;
     typedef typename UIntHMap::iterator UIntHMap_i;
     typedef typename UIntHMap::value_type UIntHMap_v;
 
-    typedef STDEXT::hash_map<unsigned int, UIntHMap> EdgeMap;
+    typedef std::unordered_map<unsigned int, UIntHMap> EdgeMap;
     typedef typename EdgeMap::iterator EdgeMap_i;
     typedef typename EdgeMap::value_type EdgeMap_v;
 
@@ -586,15 +576,15 @@ class TriMeshClipper
             }
         };
 
-        typedef STDEXT::hash_map<unsigned int, EdgeIntersections> UIntHMap;
+        typedef std::unordered_map<unsigned int, EdgeIntersections> UIntHMap;
         typedef typename UIntHMap::iterator UIntHMap_i;
         typedef typename UIntHMap::value_type UIntHMap_v;
 
-        typedef STDEXT::hash_map<unsigned int, UIntHMap> EdgeMap;
+        typedef std::unordered_map<unsigned int, UIntHMap> EdgeMap;
         typedef typename EdgeMap::iterator EdgeMap_i;
         typedef typename EdgeMap::value_type EdgeMap_v;
 
-        typedef STDEXT::hash_map<unsigned int, unsigned int> UIHMap;
+        typedef std::unordered_map<unsigned int, unsigned int> UIHMap;
         typedef typename UIHMap::iterator UIHMap_i;
 
         typedef typename TriMeshType::ConstFaceIterator ConstFaceIterator;
