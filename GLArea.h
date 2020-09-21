@@ -1,7 +1,6 @@
 #pragma once
 #include "GL/glew.h"
 
-//�л�32-64λ��ֻ��Ҫ����dll���Լ�ѡ����ȷ��QT�汾�����±��룬������������
 
 #include <QColor>
 #include <QImage>
